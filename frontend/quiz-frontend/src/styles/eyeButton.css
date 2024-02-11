@@ -1,0 +1,15 @@
+.eyeball {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    outline: none;
+    position: absolute;
+    top: 35%;
+    right: 0.75rem;
+    border: none;
+    background-color: transparent;
+    transform: translate(-50%);
+    z-index: 3;
+}
+

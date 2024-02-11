@@ -1,0 +1,112 @@
+/* .quiz-content{
+    border: 1px solid #164E63;
+    padding: 4px 0px;
+} */
+.question-pack {
+  padding: 15px 20px 10px 20px;
+  box-shadow: 2px 3px 32px -8px rgba(0, 0, 0, 0.75);
+}
+
+.btns {
+  box-shadow: 2px 3px 32px -8px rgba(0, 0, 0, 0.75);
+  padding: 6px 18px;
+  background-color: transparent;
+  color: #047857;
+  border: 1px solid #047857;
+  /* background-color: #047857;
+  color: #fff; */
+  transition: all 0.5s;
+  width: 140px;
+  border-radius: 4px;
+}
+
+.btns:hover {
+  background-color: #047857;
+  color: #fff;
+  /* background-color: transparent;
+  color: #047857;
+  border: 1px solid #047857; */
+}
+
+.back-btn {
+  box-shadow: 2px 3px 32px -8px rgba(0, 0, 0, 0.75);
+  padding: 6px 18px;
+  /* background-color: #64748b; */
+  /* background-color: #b91c1c;
+  color: #fff; */
+  cursor: pointer;
+  border-radius: 4px;
+  background-color: transparent;
+  color: #b91c1c;
+  border: 1px solid #b91c1c;
+}
+
+.back-btn:hover {
+  /* background-color: transparent;
+  color: #b91c1c;
+  border: 1px solid #b91c1c; */
+  background-color: #b91c1c;
+  color: #fff;
+}
+
+.del-icon-cont{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 2px solid #b91c1c;
+}
+.del-icon{
+  font-size: 25px;
+  color: #b91c1c;
+  /* margin-left: 5px;
+  margin-top: 5px; */
+}
+.popup-btns{
+  color: #fff;
+  padding: 4px 10px;
+  width: 100px;
+  border-radius: 4px;
+  font-weight: 300;
+}
+.popup-btns:hover{
+  box-shadow: 0px 0px 3px black;
+}
+.publish {
+  display: flex;
+  align-items: center;
+  margin-top: 450px;
+  justify-content: center;
+  gap: 10px;
+  font-size: 24px;
+  color: #15803d;
+  width: 100%;
+  transition: all 1s ease-in-out;
+  animation: publish 1s ease-out;
+  background-color: #fff;
+  width: 200px;
+  height: 70px;
+}
+
+@keyframes publish {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.4);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .publish {
+    font-size: 20px;
+  }
+  .btns {
+    width: auto;
+  }
+}
