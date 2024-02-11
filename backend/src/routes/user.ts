@@ -6,6 +6,7 @@ import { body } from "express-validator";
 import {
   deactivateUser,
   getUser,
+  getAllUser,
   updateUser,
   changePassword,
   verifyDeactivateAccountOTP,
@@ -22,6 +23,11 @@ const router = express.Router();
 // User should be authorize
 //Get /user/:userId
 router.get("/", isAuthenticated, getUser);
+
+// User should be authenticate
+// User should be authorize
+//Get /user/all-users
+router.get("/all-users", isAuthenticated, getAllUser);
 
 // User should be authenticate
 // User should be authorize

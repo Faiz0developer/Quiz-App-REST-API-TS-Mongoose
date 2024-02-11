@@ -91,7 +91,7 @@ const submitExam: RequestHandler = async (req, res, next) => {
     const quizId = req.body.quizId;
     const attemptedQuestion = req.body.attemptedQuestion;
     
-    const quiz = await Quiz.findById(quizId, { questionList: 1 ,answers: 1, passingPercentage:1 });
+    const quiz = await Quiz.findById(quizId, { questionList: 1 ,answers: 1, passingPercentage:1,createdBy:1 });
     if (!quiz) {
       const err = new ProjectError("No quiz found!");
       err.statusCode = 404;

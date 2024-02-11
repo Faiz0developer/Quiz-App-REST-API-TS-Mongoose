@@ -36,6 +36,31 @@ const getUser: RequestHandler = async (req, res, next) => {
   }
 };
 
+const getAllUser: RequestHandler = async (req, res, next) => {
+  let resp: ReturnResponse;
+  const userId = req.userId;
+  try {
+    if (!userId) {
+      const err = new ProjectError("You are not authorized!");
+      err.statusCode = 401;
+      throw err;
+    }
+    let users = await User.find({}, { name: 1, email: 1,  });
+    // console.log(users[0]._id.toString(), userId)
+    users = users.filter((user) => user._id.toString() !== userId);
+    if (!users) {
+      const err = new ProjectError("No user exist");
+      err.statusCode = 401;
+      throw err;
+    } else {
+      resp = { status: "success", message: "User found", data: users };
+      res.status(200).send(resp);
+    }
+  } catch (error: any) {
+    next(error);
+  }
+};
+
 const updateUser: RequestHandler = async (req, res, next) => {
   let resp: ReturnResponse;
   const userId = req.userId;
@@ -262,4 +287,4 @@ const isActiveUser = async (userId: String) => {
   return !user.isDeactivated;
 };
 
-export { deactivateUser, getUser, isActiveUser, updateUser, changePassword, verifyDeactivateAccountOTP};
+export { deactivateUser, getUser,getAllUser, isActiveUser, updateUser, changePassword, verifyDeactivateAccountOTP};
