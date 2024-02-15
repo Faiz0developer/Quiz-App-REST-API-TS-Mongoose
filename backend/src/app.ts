@@ -14,7 +14,7 @@ import clearBlacklistedTokenScheduler from "./utils/clearBlacklistedTokenSchedul
 
 const app = express();
 
-app.use(cors({origin:`http://${process.env.CORS_ORIGIN_URL}`,credentials:true}))
+app.use(cors({origin:`http://localhost:3000`,credentials:true}))
 
 const connectionString = process.env.CONNECTION_STRING || "";
 
