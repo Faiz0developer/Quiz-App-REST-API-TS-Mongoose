@@ -16,7 +16,7 @@ import sendEmailOTPRegister from "./otp"
 
 
 const secretKey = process.env.SECRET_KEY || "";
-const SERVER_BASE_URL = process.env.BASE_URL;
+const SERVER_BASE_URL = "localhost:3002";
 
 //const registerUser:RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
 const registerUser: RequestHandler = async (req, res, next) => {
@@ -414,7 +414,7 @@ const forgotPassword: RequestHandler = async (req, res, next) => {
 
     const message = `
     Click on the below link to reset the password of your account:
-    http://${process.env.BASE_URL}/auth/forgotpassword/${emailToken}
+    http://${SERVER_BASE_URL}/auth/forgotpassword/${emailToken}
     
     (Note: If the link is not clickable kindly copy the link and paste it in the browser.)`;
     sendEmail(user.email, "Verify Email", message);
@@ -449,7 +449,7 @@ const forgotPasswordCallback: RequestHandler = async (req, res, next) => {
 
     // const redirectLink = `http://${process.env.BASE_URL}/auth/forgotpassword/${userId}`;
     // res.redirect(redirectLink);
-    console.log(`http://${process.env.BASE_URL}/auth/forgotpassword/${userId}`);
+    console.log(`http://${SERVER_BASE_URL}/auth/forgotpassword/${userId}`);
 
   } catch (error) {
     next(error);
