@@ -26,7 +26,7 @@ const AllQuizzes: React.FC<AllQuizPropsType> = ({ searchInput,setIsConnectionErr
       try {
         setIsLoading(true);
         const res = await axios.get(
-          "http://localhost:3002/quiz/allpublishedquiz",
+          "https://quizzle-app-backend.vercel.app/quiz/allpublishedquiz",
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -59,7 +59,7 @@ const AllQuizzes: React.FC<AllQuizPropsType> = ({ searchInput,setIsConnectionErr
 
   const startExam = async (quizId: string) => {
     try {
-      const res = await axios.get(`http://localhost:3002/exam/${quizId}`, {
+      const res = await axios.get(`https://quizzle-app-backend.vercel.app/exam/${quizId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

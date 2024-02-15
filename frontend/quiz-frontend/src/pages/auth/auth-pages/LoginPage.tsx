@@ -8,7 +8,6 @@ import logo from "../../../assets/Q-removebg-preview.png";
 import "../../../styles/login.css";
 import EyeButton from "../../../components/EyeButton";
 import { setToken } from "../../../store/slices/tokenSice";
-import ConnectionErrorModal from "../../../components/modal/ConnectionErrorModal";
 import {ConnectionResponse} from '../../../utils/interfaces'
 
 const LoginPage: React.FC<ConnectionResponse> = ({setIsConnectionError}) => {
@@ -35,7 +34,7 @@ const LoginPage: React.FC<ConnectionResponse> = ({setIsConnectionError}) => {
       if (userDetails.email !== "" || userDetails.password !== "") {
         setIsLoading(true);
         const res = await axios.post(
-          "http://localhost:3002/auth/login",
+          "https://quizzle-app-backend.vercel.app/auth/login",
           userDetails,
           {
             headers: {
@@ -211,9 +210,6 @@ const LoginPage: React.FC<ConnectionResponse> = ({setIsConnectionError}) => {
           </div>
         </form>
 
-        {/* {isConnectionError && (
-          <ConnectionErrorModal onSetIsConnectionError={setIsConnectionError} />
-        )} */}
       </div>
     </div>
   );

@@ -43,7 +43,7 @@ const ChangePasswordPage: React.FC<ConnectionResponse> = ({
       ) {
         setIsLoading(true);
         const res = await axios.put(
-          "http://localhost:3002/user/changepassword",
+          "https://quizzle-app-backend.vercel.app/user/changepassword",
           changePasswordDetails,
           {
             headers: {

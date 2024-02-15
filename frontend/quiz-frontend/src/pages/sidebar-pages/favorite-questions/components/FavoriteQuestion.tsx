@@ -36,7 +36,7 @@ const FavoriteQuestion: React.FC<FavoriteQuesProps> = ({
   const removeFavQuestionHandler = async (id: string) => {
     try {
       const res = await axios.delete(
-        `http://localhost:3002/favquestion/${id}`,
+        `https://quizzle-app-backend.vercel.app/favquestion/${id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

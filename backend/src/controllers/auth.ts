@@ -16,7 +16,7 @@ import sendEmailOTPRegister from "./otp"
 
 
 const secretKey = process.env.SECRET_KEY || "";
-const SERVER_BASE_URL = "localhost:3002";
+const SERVER_BASE_URL = "quizzle-app-backend.vercel.app/";
 
 //const registerUser:RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
 const registerUser: RequestHandler = async (req, res, next) => {

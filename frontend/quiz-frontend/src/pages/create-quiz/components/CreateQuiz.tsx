@@ -46,7 +46,7 @@ const CreateQuiz:React.FC<ConnectionResponse> = ({setIsConnectionError}) => {
   useEffect(() => {
     const fetchAllUsers = async () => {
       try {
-        const res = await axios.get("http://localhost:3002/user/all-users", {
+        const res = await axios.get("https://quizzle-app-backend.vercel.app/user/all-users", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -130,7 +130,7 @@ const CreateQuiz:React.FC<ConnectionResponse> = ({setIsConnectionError}) => {
     console.log(quizData)
     try {
       setIsLoading(true);
-      const res = await axios.post("http://localhost:3002/quiz", quizData, {
+      const res = await axios.post("https://quizzle-app-backend.vercel.app/quiz", quizData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

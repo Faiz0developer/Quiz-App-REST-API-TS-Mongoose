@@ -33,7 +33,7 @@ const Header: React.FC<HeaderProps> = ({
   const getUseerDataHandler = async () => {
     setIsSideBarVisibe(true);
     try {
-      const res = await axios.get("http://localhost:3002/user", {
+      const res = await axios.get("https://quizzle-app-backend.vercel.app/user", {
         headers: {
           Authorization: `Bearer ${token}`,
         },

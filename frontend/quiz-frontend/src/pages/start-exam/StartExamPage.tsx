@@ -23,7 +23,7 @@ const StartExamPage: React.FC<ConnectionResponse> = ({setIsConnectionError}) => 
     try {
       setIsLoading(true);
       const res = await axios.post(
-        "http://localhost:3002/exam",
+        "https://quizzle-app-backend.vercel.app/exam",
         { quizId: id, attemptedQuestion },
         {
           headers: {

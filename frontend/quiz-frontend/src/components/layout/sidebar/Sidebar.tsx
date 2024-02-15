@@ -63,7 +63,7 @@ const Sidebar: React.FC<SidebarProps> = ({
     try {
       setLoggingOut(true);
       const res = await axios.post(
-        "http://localhost:3002/user/logout",
+        "https://quizzle-app-backend.vercel.app/user/logout",
         {},
         {
           headers: {
@@ -85,7 +85,7 @@ const Sidebar: React.FC<SidebarProps> = ({
   const deactivateHandler = async () => {
     try {
       const res = await axios.patch(
-        "http://localhost:3002/user/deactivate",
+        "https://quizzle-app-backend.vercel.app/user/deactivate",
         {},
         {
           headers: {
@@ -109,7 +109,7 @@ const Sidebar: React.FC<SidebarProps> = ({
     };
     try {
       const res = await axios.post(
-        "http://localhost:3002/user/deactivate/verify-deactivate-account-otp",
+        "https://quizzle-app-backend.vercel.app/user/deactivate/verify-deactivate-account-otp",
         otpData,
         {
           headers: {

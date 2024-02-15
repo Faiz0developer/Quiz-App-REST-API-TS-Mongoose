@@ -57,7 +57,7 @@ const StartQuizCard: React.FC<StartQuizProps> = ({
       });
       try {
         const res = await axios.post(
-          "http://localhost:3002/favquestion",
+          "https://quizzle-app-backend.vercel.app/favquestion",
           { question: question.question, options: question.options },
           {
             headers: {

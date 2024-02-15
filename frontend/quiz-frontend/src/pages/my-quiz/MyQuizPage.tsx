@@ -33,7 +33,7 @@ const MyQuizPage: React.FC<ConnectionResponse> = ({setIsConnectionError}) => {
     const myQuizDataFetch = async () => {
       try {
         setIsLoading(true);
-        const res = await axios.get("http://localhost:3002/quiz", {
+        const res = await axios.get("https://quizzle-app-backend.vercel.app/quiz", {
           headers: {
             Authorization: `Bearer ${token}`,
           },

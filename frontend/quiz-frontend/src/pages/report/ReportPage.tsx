@@ -19,7 +19,7 @@ const ReportPage: React.FC<ConnectionResponse> = ({setIsConnectionError}) => {
     const fetchReportData = async () => {
       try {
         setIsLoading(true);
-        const res = await axios.get("http://localhost:3002/report/", {
+        const res = await axios.get("https://quizzle-app-backend.vercel.app/report/", {
           headers: {
             Authorization: `Bearer ${token}`,
           },

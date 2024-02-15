@@ -18,7 +18,7 @@ const ForgotPasswordPage: React.FC = () => {
     try {
       setIsLoading(true);
       const res = await axios.post(
-        "http://localhost:3002/auth/forgotpassword",
+        "https://quizzle-app-backend.vercel.app/auth/forgotpassword",
         userEmail,
         {
           headers: {

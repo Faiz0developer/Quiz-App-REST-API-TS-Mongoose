@@ -36,7 +36,7 @@ const SingleQuizPage: React.FC<SingleQuizProps> = ({
     try {
       setPublishing(true);
       const res = await axios.patch(
-        "http://localhost:3002/quiz/publish",
+        "https://quizzle-app-backend.vercel.app/quiz/publish",
         publishQuizId,
         {
           headers: {
@@ -63,7 +63,7 @@ const SingleQuizPage: React.FC<SingleQuizProps> = ({
     const fetchParticularQuizData = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:3002/quiz/${param.quizId}`,
+          `https://quizzle-app-backend.vercel.app/quiz/${param.quizId}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -85,7 +85,7 @@ const SingleQuizPage: React.FC<SingleQuizProps> = ({
     try {
       setIsDeleting(true);
       const res = await axios.delete(
-        `http://localhost:3002/quiz/${param.quizId}`,
+        `https://quizzle-app-backend.vercel.app/quiz/${param.quizId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

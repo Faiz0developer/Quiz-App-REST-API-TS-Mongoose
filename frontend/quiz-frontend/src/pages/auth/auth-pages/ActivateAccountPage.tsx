@@ -29,7 +29,7 @@ const ActivateAccountPage: React.FC = () => {
       if (activationDetails.email !== "" && activationDetails.key !== "") {
         setIsActivating(true);
         const res = await axios.post(
-          "http://localhost:3002/auth/activateaccount",
+          "https://quizzle-app-backend.vercel.app/auth/activateaccount",
           activationDetails,
           {
             headers: {

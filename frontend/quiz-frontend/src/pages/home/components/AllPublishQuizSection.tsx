@@ -22,7 +22,7 @@ const AllPublishQuizSection = () => {
     const fetchAllQuizdata = async () => {
       try {
         const res = await axios.get(
-          "http://localhost:3002/quiz/allpublishedquiz",
+          "https://quizzle-app-backend.vercel.app/quiz/allpublishedquiz",
           {
             headers: {
               Authorization: `Bearer ${token}`,

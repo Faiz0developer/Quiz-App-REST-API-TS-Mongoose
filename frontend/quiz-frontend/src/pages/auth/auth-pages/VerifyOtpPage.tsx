@@ -38,7 +38,7 @@ const VerifyOtpPage: React.FC = () => {
 
     try {
       const res = await axios.post(
-        `http://localhost:3002/auth/verify-registration-otp/${registerDetails.token}`,
+        `https://quizzle-app-backend.vercel.app/auth/verify-registration-otp/${registerDetails.token}`,
         userOtp,
         {
           headers: {
@@ -70,7 +70,7 @@ const VerifyOtpPage: React.FC = () => {
   const resendOTPHandler = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:3002/auth/resend-registration-otp/${registerDetails.token}`
+        `https://quizzle-app-backend.vercel.app/auth/resend-registration-otp/${registerDetails.token}`
       );
       const { data } = res;
       console.log(data);

@@ -40,7 +40,7 @@ const RegisterPage: React.FC = () => {
       ) {
         setIsLoading(true);
         const res = await axios.post(
-          "http://localhost:3002/auth/",
+          "https://quizzle-app-backend.vercel.app/auth/",
           userFields,
           {
             headers: {

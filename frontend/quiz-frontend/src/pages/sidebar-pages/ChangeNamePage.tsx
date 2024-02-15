@@ -22,7 +22,7 @@ const ChangeNamePage: React.FC<ConnectionResponse> = ({setIsConnectionError}) =>
     try {
       if (newName.name !== "") {
         setIsLoading(true);
-        const res = await axios.put("http://localhost:3002/user", newName, {
+        const res = await axios.put("https://quizzle-app-backend.vercel.app/user", newName, {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,

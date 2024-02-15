@@ -14,7 +14,7 @@ import clearBlacklistedTokenScheduler from "./utils/clearBlacklistedTokenSchedul
 
 const app = express();
 
-app.use(cors({origin:`http://localhost:3000`,credentials:true}))
+app.use(cors({origin:`https://quizzle-blush.vercel.app`,credentials:true}))
 
 const connectionString = process.env.CONNECTION_STRING || "";
 

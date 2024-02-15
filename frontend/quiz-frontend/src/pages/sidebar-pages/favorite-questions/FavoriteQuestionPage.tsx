@@ -18,7 +18,7 @@ const FavoriteQuestionPage: React.FC<ConnectionResponse> = ({
     const getFavQuestionsData = async () => {
       try {
         setIsLoading(true);
-        const res = await axios.get("http://localhost:3002/favquestion", {
+        const res = await axios.get("https://quizzle-app-backend.vercel.app/favquestion", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
