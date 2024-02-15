@@ -11,6 +11,7 @@ import { myQuizData } from "../../store/slices/quizSlice";
 import { RootState } from "../../store/store";
 import "../../styles/myQuiz.css";
 import { BsCalendar2DateFill } from "react-icons/bs";
+import { ConnectionResponse } from "../../utils/interfaces";
 
 interface MyQuizType {
   _id: string;
@@ -20,7 +21,7 @@ interface MyQuizType {
   createdAt: any;
 }
 
-const MyQuizPage: React.FC = () => {
+const MyQuizPage: React.FC<ConnectionResponse> = ({setIsConnectionError}) => {
   const [searchInput, setSearchInput] = useState("");
   const [myQuizzes, setMyQuizzes] = useState<MyQuizType[]>();
   const [isLoading, setIsLoading] = useState(false);
@@ -44,7 +45,7 @@ const MyQuizPage: React.FC = () => {
         }
       } catch (error) {
         setIsLoading(false);
-        console.log(error);
+        setIsConnectionError(true)
       }
     };
 

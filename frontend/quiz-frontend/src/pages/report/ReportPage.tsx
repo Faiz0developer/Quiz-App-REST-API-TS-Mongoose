@@ -5,8 +5,9 @@ import axios from "axios";
 
 import { RootState } from "../../store/store";
 import "../../styles/report.css";
+import { ConnectionResponse } from "../../utils/interfaces";
 
-const ReportPage: React.FC = () => {
+const ReportPage: React.FC<ConnectionResponse> = ({setIsConnectionError}) => {
   const [allReports, setAllReports] = useState<[]>();
   const [isLoading, setIsLoading] = useState(false);
   const token = useSelector((state: RootState) => state.token.token);
@@ -29,7 +30,7 @@ const ReportPage: React.FC = () => {
         }, 1000);
       } catch (error) {
         setIsLoading(false);
-        console.log(error);
+        setIsConnectionError(true)
       }
     };
 

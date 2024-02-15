@@ -12,9 +12,13 @@ import OnSuccessModal from "../../components/modal/OnSuccessModal";
 
 interface SingleQuizProps {
   setPublishing: Dispatch<SetStateAction<boolean>>;
+  setIsConnectionError: Dispatch<SetStateAction<boolean>>;
 }
 
-const SingleQuizPage: React.FC<SingleQuizProps> = ({ setPublishing }) => {
+const SingleQuizPage: React.FC<SingleQuizProps> = ({
+  setPublishing,
+  setIsConnectionError,
+}) => {
   const [isPublished, setIsPublished] = useState(false);
   const [deleteConfirmation, setDeleteConfirmation] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
@@ -51,7 +55,7 @@ const SingleQuizPage: React.FC<SingleQuizProps> = ({ setPublishing }) => {
       }
     } catch (error) {
       setPublishing(false);
-      console.log(error);
+      setIsConnectionError(true);
     }
   };
 
@@ -70,7 +74,7 @@ const SingleQuizPage: React.FC<SingleQuizProps> = ({ setPublishing }) => {
           setData(res.data.data);
         }
       } catch (error) {
-        console.log(error);
+        setIsConnectionError(true);
       }
     };
 
@@ -97,7 +101,8 @@ const SingleQuizPage: React.FC<SingleQuizProps> = ({ setPublishing }) => {
         }, 1000);
       }
     } catch (error) {
-      console.log(error);
+      setIsDeleting(false);
+      setIsConnectionError(true)
     }
   };
 

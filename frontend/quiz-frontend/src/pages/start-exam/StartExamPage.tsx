@@ -7,8 +7,9 @@ import { RootState } from "../../store/store";
 import StartQuizCard from "./components/StartQuizCard";
 import "../../styles/StartQuiz.css";
 import SuccessModal from "../../components/modal/SuccessModal";
+import { ConnectionResponse } from "../../utils/interfaces";
 
-const StartExamPage: React.FC = () => {
+const StartExamPage: React.FC<ConnectionResponse> = ({setIsConnectionError}) => {
   const [attemptedQuestion, setAttemptedQuestion] = useState({});
   const [result, setResult] = useState();
   const [isExamSubmitted, setIsExamSubmitted] = useState(false);
@@ -37,7 +38,7 @@ const StartExamPage: React.FC = () => {
       }
     } catch (error) {
       setIsLoading(false);
-      console.log(error);
+      setIsConnectionError(true)
     }
   };
 

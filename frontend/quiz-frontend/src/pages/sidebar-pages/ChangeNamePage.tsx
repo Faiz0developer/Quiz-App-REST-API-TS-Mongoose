@@ -7,8 +7,9 @@ import { useSelector } from "react-redux";
 
 import logo from "../../assets/Q-removebg-preview.png";
 import { RootState } from "../../store/store";
+import { ConnectionResponse } from "../../utils/interfaces";
 
-const ChangeNamePage: React.FC = () => {
+const ChangeNamePage: React.FC<ConnectionResponse> = ({setIsConnectionError}) => {
   const [isNameTouched, setIsNameTouched] = useState(false);
   const [isLaoding, setIsLoading] = useState(false);
   const navigate = useNavigate();
@@ -45,7 +46,7 @@ const ChangeNamePage: React.FC = () => {
         }
       } else {
         toast.error("Please a provide name!", {
-          position: "bottom-left",
+          position: "bottom-center",
           autoClose: 4000,
           hideProgressBar: false,
           closeOnClick: true,
@@ -55,9 +56,9 @@ const ChangeNamePage: React.FC = () => {
           theme: "light",
         });
       }
-    } catch (error) {
-      console.log(error);
+    } catch (error:any) {
       setIsLoading(false);
+      setIsConnectionError(true)
     }
   };
 

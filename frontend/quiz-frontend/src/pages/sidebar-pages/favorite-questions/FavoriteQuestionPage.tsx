@@ -5,8 +5,11 @@ import { FallingLines } from "react-loader-spinner";
 
 import FavoriteQuestion from "./components/FavoriteQuestion";
 import { RootState } from "../../../store/store";
+import { ConnectionResponse } from "../../../utils/interfaces";
 
-const FavoriteQuestionPage: React.FC = () => {
+const FavoriteQuestionPage: React.FC<ConnectionResponse> = ({
+  setIsConnectionError,
+}) => {
   const [isLoading, setIsLoading] = useState(false);
   const [favQuestionData, setFavQuestionData] = useState<{}[]>();
   const token = useSelector((state: RootState) => state.token.token);
@@ -23,7 +26,8 @@ const FavoriteQuestionPage: React.FC = () => {
         setIsLoading(false);
         setFavQuestionData(res.data.data.favQues);
       } catch (error) {
-        console.log(error);
+        setIsLoading(false);
+        setIsConnectionError(true);
       }
     };
     getFavQuestionsData();

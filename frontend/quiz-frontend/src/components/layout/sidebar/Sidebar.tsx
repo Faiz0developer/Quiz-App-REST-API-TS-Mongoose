@@ -22,12 +22,14 @@ interface SidebarProps {
   isSideBarVisibe: boolean;
   setIsSideBarVisibe: Dispatch<SetStateAction<boolean>>;
   setLoggingOut: Dispatch<SetStateAction<boolean>>;
+  setIsConnectionError: Dispatch<SetStateAction<boolean>>;
 }
 
 const Sidebar: React.FC<SidebarProps> = ({
   setIsSideBarVisibe,
   isSideBarVisibe,
   setLoggingOut,
+  setIsConnectionError
 }) => {
   const [onLogout, setOnLogout] = useState(false);
   const [onDeactivate, setOnDeactivate] = useState(false);
@@ -75,7 +77,8 @@ const Sidebar: React.FC<SidebarProps> = ({
         navigate("/");
       }
     } catch (error) {
-      console.log(error);
+      setLoggingOut(false);
+      setIsConnectionError(true)
     }
   };
 
@@ -95,7 +98,7 @@ const Sidebar: React.FC<SidebarProps> = ({
         setOnDeactivate(false);
       }
     } catch (error) {
-      console.log(error);
+      setIsConnectionError(true)
     }
   };
 
@@ -136,7 +139,7 @@ const Sidebar: React.FC<SidebarProps> = ({
       }
     } catch (error) {
       setIsLoading(false);
-      console.log(error);
+      setIsConnectionError(true)
     }
   };
 

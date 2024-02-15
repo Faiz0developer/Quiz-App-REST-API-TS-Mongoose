@@ -14,24 +14,25 @@ import StartExamPage from "../pages/start-exam/StartExamPage";
 
 interface AppRoutesProps {
   setPublishing: Dispatch<SetStateAction<boolean>>;
+  setIsConnectionError: Dispatch<SetStateAction<boolean>>;
 }
 
-const AppRoutes: React.FC<AppRoutesProps> = ({ setPublishing }) => {
+const AppRoutes: React.FC<AppRoutesProps> = ({ setPublishing,setIsConnectionError }) => {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
-      <Route path="/create-quiz-home" element={<CreateQuizPage />} />
-      <Route path="/my-quizzes" element={<MyQuizPage />} />
+      <Route path="/create-quiz-home" element={<CreateQuizPage setIsConnectionError={setIsConnectionError}/>} />
+      <Route path="/my-quizzes" element={<MyQuizPage setIsConnectionError={setIsConnectionError}/>} />
       <Route
         path="/my-quizzes/:quizId"
-        element={<SingleQuizPage setPublishing={setPublishing} />}
+        element={<SingleQuizPage setPublishing={setPublishing} setIsConnectionError={setIsConnectionError} />}
       />
-      <Route path="/all-published-quiz" element={<AllQuizzesPage />} />
-      <Route path="/start-exam" element={<StartExamPage />} />
-      <Route path="/report" element={<ReportPage />} />
-      <Route path="/change-name" element={<ChangeNamePage />} />
-      <Route path="/change-password" element={<ChangePasswordPage />} />
-      <Route path="/favorite-questions" element={<FavoriteQuestionPage />} />
+      <Route path="/all-published-quiz" element={<AllQuizzesPage setIsConnectionError={setIsConnectionError}/>} />
+      <Route path="/start-exam" element={<StartExamPage setIsConnectionError={setIsConnectionError}/>} />
+      <Route path="/report" element={<ReportPage setIsConnectionError={setIsConnectionError}/>} />
+      <Route path="/change-name" element={<ChangeNamePage setIsConnectionError={setIsConnectionError}/>} />
+      <Route path="/change-password" element={<ChangePasswordPage setIsConnectionError={setIsConnectionError}/>} />
+      <Route path="/favorite-questions" element={<FavoriteQuestionPage setIsConnectionError={setIsConnectionError}/>} />
     </Routes>
   );
 };

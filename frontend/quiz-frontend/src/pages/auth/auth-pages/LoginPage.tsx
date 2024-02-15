@@ -8,13 +8,16 @@ import logo from "../../../assets/Q-removebg-preview.png";
 import "../../../styles/login.css";
 import EyeButton from "../../../components/EyeButton";
 import { setToken } from "../../../store/slices/tokenSice";
+import ConnectionErrorModal from "../../../components/modal/ConnectionErrorModal";
+import {ConnectionResponse} from '../../../utils/interfaces'
 
-const LoginPage: React.FC = () => {
+const LoginPage: React.FC<ConnectionResponse> = ({setIsConnectionError}) => {
   const [isEmailTouched, setIsEmailTouched] = useState(false);
   const [isPasswordTouched, setIsPasswordTouched] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  // const [isConnectionError, setIsConnectionError] = useState(false);
   const navigate = useNavigate();
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const [userDetails, setUserDetails] = useState({
     email: "",
     password: "",
@@ -59,34 +62,38 @@ const LoginPage: React.FC = () => {
         });
       }
     } catch (error: any) {
-      console.log(error.response);
       const { data } = error.response.data;
       if (error.response.data.status === "error") {
-        toast.error(
-          `${
-            Object.keys(data).length === 0
-              ? error.response.data.message
-              : data[0].msg
-          }`,
-          {
-            position: "bottom-center",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
+        if (error.response.status >= 500) {
+          setIsLoading(false);
+          setIsConnectionError(true);
+        } else {
+          toast.error(
+            `${
+              Object.keys(data).length === 0
+                ? error.response.data.message
+                : data[0].msg
+            }`,
+            {
+              position: "bottom-center",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            }
+          );
+          setIsLoading(false);
+          if (
+            error.response.data.message.startsWith("Your") &&
+            error.response.data.message.endsWith("instructions")
+          ) {
+            setTimeout(() => {
+              navigate("/activate-account");
+            }, 5000);
           }
-        );
-        setIsLoading(false);
-        if (
-          error.response.data.message.startsWith("Your") &&
-          error.response.data.message.endsWith("instructions")
-        ) {
-          setTimeout(() => {
-            navigate("/activate-account");
-          }, 5000);
         }
       }
     }
@@ -203,6 +210,10 @@ const LoginPage: React.FC = () => {
             </h1>
           </div>
         </form>
+
+        {/* {isConnectionError && (
+          <ConnectionErrorModal onSetIsConnectionError={setIsConnectionError} />
+        )} */}
       </div>
     </div>
   );

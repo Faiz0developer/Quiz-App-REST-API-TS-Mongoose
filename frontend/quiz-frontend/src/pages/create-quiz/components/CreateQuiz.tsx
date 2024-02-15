@@ -9,13 +9,14 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 
 import { RootState } from "../../../store/store";
 import CreateQuizModal from "../../../components/modal/CreateQuizModal";
+import { ConnectionResponse } from "../../../utils/interfaces";
 
 interface AlluserType {
   _id: string;
   name: string;
 }
 
-const CreateQuiz = () => {
+const CreateQuiz:React.FC<ConnectionResponse> = ({setIsConnectionError}) => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const radioRef = useRef<HTMLInputElement>(null);
@@ -52,7 +53,7 @@ const CreateQuiz = () => {
         });
         setAllUsers(res.data.data);
       } catch (error) {
-        console.log(error);
+        setIsConnectionError(true)
       }
     };
 
@@ -154,19 +155,22 @@ const CreateQuiz = () => {
     } catch (error: any) {
       setIsLoading(false);
       const { data } = error.response.data;
-      console.log(error.response);
-      console.log(data[0].msg);
       if (error.response.data.status === "error") {
-        toast.error(data[0].msg, {
-          position: "top-center",
-          autoClose: 4000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
+        if(error.response.status>=500){
+          setIsConnectionError(true)
+        }
+        else{
+          toast.error(data[0].msg, {
+            position: "top-center",
+            autoClose: 4000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+        }
       }
     }
   };

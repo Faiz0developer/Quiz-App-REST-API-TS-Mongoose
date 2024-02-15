@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { FallingLines } from "react-loader-spinner";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
@@ -11,9 +11,10 @@ import { startQuiz } from "../../../store/slices/startExamSlice";
 
 interface AllQuizPropsType {
   searchInput: string;
+  setIsConnectionError:Dispatch<SetStateAction<boolean>>;
 }
 
-const AllQuizzes: React.FC<AllQuizPropsType> = ({ searchInput }) => {
+const AllQuizzes: React.FC<AllQuizPropsType> = ({ searchInput,setIsConnectionError }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [allPublishedQuiz, setAllPublishedQuiz] = useState<[]>();
   const dispatch = useDispatch();
@@ -40,7 +41,7 @@ const AllQuizzes: React.FC<AllQuizPropsType> = ({ searchInput }) => {
           }, 1000);
         }
       } catch (error) {
-        console.log(error);
+        setIsConnectionError(true)
       }
     };
 
@@ -68,7 +69,7 @@ const AllQuizzes: React.FC<AllQuizPropsType> = ({ searchInput }) => {
         navigate("/start-exam");
       }
     } catch (error) {
-      console.log(error);
+      setIsConnectionError(true)
     }
   };
 

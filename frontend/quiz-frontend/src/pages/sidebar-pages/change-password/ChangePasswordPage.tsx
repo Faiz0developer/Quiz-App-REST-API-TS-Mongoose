@@ -9,8 +9,11 @@ import logo from "../../../assets/Q-removebg-preview.png";
 import { RootState } from "../../../store/store";
 import ChangePasswordInput from "./components/ChangePasswordInput";
 import "../../../styles/passwordChange.css";
+import { ConnectionResponse } from "../../../utils/interfaces";
 
-const ChangePasswordPage: React.FC = () => {
+const ChangePasswordPage: React.FC<ConnectionResponse> = ({
+  setIsConnectionError
+}) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isCurrentPasswordTouched, setIsCurrentPasswordTouched] =
     useState(false);
@@ -85,24 +88,28 @@ const ChangePasswordPage: React.FC = () => {
       }
     } catch (error: any) {
       const { data } = error.response;
-      console.log(data);
       if (error.response.data.status === "error") {
-        toast.error(
-          `${
-            data.data.length ? data.data[0].msg : error.response.data.message
-          }`,
-          {
-            position: "bottom-left",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-          }
-        );
-        setIsLoading(false);
+        if (error.response.status >= 500) {
+          setIsLoading(false);
+          setIsConnectionError(true);
+        } else {
+          toast.error(
+            `${
+              data.data.length ? data.data[0].msg : error.response.data.message
+            }`,
+            {
+              position: "bottom-center",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            }
+          );
+          setIsLoading(false);
+        }
       }
     }
   };

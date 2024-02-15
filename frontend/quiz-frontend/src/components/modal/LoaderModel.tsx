@@ -16,8 +16,8 @@ const ModelOverlay: React.FC<ModalProps> = ({ text }) => {
   return (
     <div className="logout-modal">
       <div className="flex bg-[#fff] p-4 gap-2 items-center">
-        <h1 className="text-[#083344] text-[3xl] text-center">{text}</h1>
         <RotatingLines width="25" />
+        <h1 className="text-[#083344] text-[3xl] text-center">{text}</h1>
       </div>
     </div>
   );
