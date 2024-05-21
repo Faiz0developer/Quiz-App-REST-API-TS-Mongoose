@@ -1,6 +1,8 @@
 import express, { NextFunction, Request, Response } from "express";
 import mongoose from "mongoose";
 import cors from "cors"
+import swaggerUi from 'swagger-ui-express';
+import swaggerDocument from '../openapi3_0.json';
 
 import authRoute from "./routes/auth";
 import examRoute from "./routes/exam";
@@ -28,6 +30,7 @@ declare global {
     }
   }
 }
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 
 //Redirect /auth
 app.use("/auth", authRoute);

@@ -1,0 +1,2427 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Demo QuizClass",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://quizzle-app-backend.vercel.app"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "paths": {
+    "/auth": {
+      "post": {
+        "tags": [
+          "default"
+        ],
+        "summary": "User Registration",
+        "description": "This API wiil use to register user",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "name": "Aarush",
+                  "email": "aarush@gmail.com",
+                  "password": "Password@12345",
+                  "confirmPassword": "Password@12345"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "headers": {
+              "X-Powered-By": {
+                "schema": {
+                  "type": "string",
+                  "example": "Express"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json; charset=utf-8"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer",
+                  "example": "96"
+                }
+              },
+              "ETag": {
+                "schema": {
+                  "type": "string",
+                  "example": "W/\"60-gZatUJBR51yOMncooFV/H/m9v5I\""
+                }
+              },
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Mon, 02 Oct 2023 08:48:18 GMT"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "keep-alive"
+                }
+              },
+              "Keep-Alive": {
+                "schema": {
+                  "type": "string",
+                  "example": "timeout=5"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "status": "success",
+                  "message": "OTP has sent on your email. Please Verify",
+                  "data": {
+                    "email": "aarush@gmail.com",
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5tazUwNjA3NzNAZ21haWwuY29tIiwiaWF0IjoxNjk5NjM3MjA3fQ.a4d7MaFukyeS410_zbwssc_r4jctsvTsAdkLVlmSngE"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "tags": [
+          "default"
+        ],
+        "summary": "User Login",
+        "description": "Login for user",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "email": "shalni07@gmail.com",
+                  "password": "Shalni@07"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "X-Powered-By": {
+                "schema": {
+                  "type": "string",
+                  "example": "Express"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json; charset=utf-8"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer",
+                  "example": "238"
+                }
+              },
+              "ETag": {
+                "schema": {
+                  "type": "string",
+                  "example": "W/\"ee-pYDBk/ZfJuNJzjcNkC5RatW9skk\""
+                }
+              },
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Mon, 02 Oct 2023 08:49:12 GMT"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "keep-alive"
+                }
+              },
+              "Keep-Alive": {
+                "schema": {
+                  "type": "string",
+                  "example": "timeout=5"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "status": "success",
+                  "message": "Logged in",
+                  "data": {
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTFhODNkMjU1YWYzYzkxYTM4ZjAxOTAiLCJpYXQiOjE2OTYyMzY1NTIsImV4cCI6MTY5NjI0MDE1Mn0.E9B-aeO4EmWeM4fNLcr1V8XakTl5YCMjQ8037mIen78"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/activateaccount": {
+      "post": {
+        "tags": [
+          "default"
+        ],
+        "summary": "Activate Account",
+        "description": "Login for user",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "email": "aarush@gmail.com",
+                  "key": "12345678"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "X-Powered-By": {
+                "schema": {
+                  "type": "string",
+                  "example": "Express"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json; charset=utf-8"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer",
+                  "example": "238"
+                }
+              },
+              "ETag": {
+                "schema": {
+                  "type": "string",
+                  "example": "W/\"ee-pYDBk/ZfJuNJzjcNkC5RatW9skk\""
+                }
+              },
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Mon, 02 Oct 2023 08:49:12 GMT"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "keep-alive"
+                }
+              },
+              "Keep-Alive": {
+                "schema": {
+                  "type": "string",
+                  "example": "timeout=5"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "status": "success",
+                  "message": "Key Validated you have only attempt for login"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user": {
+      "get": {
+        "tags": [
+          "default"
+        ],
+        "summary": "User get",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "X-Powered-By": {
+                "schema": {
+                  "type": "string",
+                  "example": "Express"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json; charset=utf-8"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer",
+                  "example": "128"
+                }
+              },
+              "ETag": {
+                "schema": {
+                  "type": "string",
+                  "example": "W/\"80-3KDSHrv5RlGQ1AfVL0CKikhDQhM\""
+                }
+              },
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Mon, 02 Oct 2023 08:52:10 GMT"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "keep-alive"
+                }
+              },
+              "Keep-Alive": {
+                "schema": {
+                  "type": "string",
+                  "example": "timeout=5"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "status": "success",
+                  "message": "User found",
+                  "data": {
+                    "_id": "651a83d255af3c91a38f0190",
+                    "name": "Aarush",
+                    "email": "aarush@gmail.com"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "default"
+        ],
+        "summary": "User Update",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "name": "Aarush Kashyap"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "X-Powered-By": {
+                "schema": {
+                  "type": "string",
+                  "example": "Express"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json; charset=utf-8"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer",
+                  "example": "55"
+                }
+              },
+              "ETag": {
+                "schema": {
+                  "type": "string",
+                  "example": "W/\"37-pw860p30T2SOxqRulruRnaHIwis\""
+                }
+              },
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Mon, 02 Oct 2023 08:53:46 GMT"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "keep-alive"
+                }
+              },
+              "Keep-Alive": {
+                "schema": {
+                  "type": "string",
+                  "example": "timeout=5"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "status": "success",
+                  "message": "User Updated",
+                  "data": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/quiz": {
+      "post": {
+        "tags": [
+          "default"
+        ],
+        "summary": "Quiz Create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "name": "GK Quiz 101",
+                  "category": "exam",
+                  "difficultyLevel": "easy",
+                  "questionList": [
+                    {
+                      "questionNumber": 1,
+                      "question": "What is the capital of Uttar Pradesh?",
+                      "options": {
+                        "1": "Varanasi",
+                        "2": "Lucknow",
+                        "3": "Dehradun",
+                        "4": "Banglore"
+                      }
+                    },
+                    {
+                      "questionNumber": 2,
+                      "question": "How many players are there in football team?",
+                      "options": {
+                        "1": "1",
+                        "2": "2",
+                        "3": "11",
+                        "4": "20"
+                      }
+                    },
+                    {
+                      "questionNumber": 3,
+                      "question": "Sun temple is located in ____?",
+                      "options": {
+                        "1": "Konark",
+                        "2": "Goa",
+                        "3": "Delhi",
+                        "4": "Gujrat"
+                      }
+                    },
+                    {
+                      "questionNumber": 4,
+                      "question": "Which animal is know as ship of the desert?",
+                      "options": {
+                        "1": "Goat",
+                        "2": "Cow",
+                        "3": "Camel",
+                        "4": "Titanic"
+                      }
+                    },
+                    {
+                      "questionNumber": 5,
+                      "question": "How many letter are in the English alphabet?",
+                      "options": {
+                        "1": "27",
+                        "2": "24",
+                        "3": "25",
+                        "4": "26"
+                      }
+                    }
+                  ],
+                  "answers": {
+                    "1": 2,
+                    "2": 3,
+                    "3": 1,
+                    "4": 3,
+                    "5": 4
+                  },
+                  "passingPercentage": 60,
+                  "isPublicQuiz": false,
+                  "allowedUser": []
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "headers": {
+              "X-Powered-By": {
+                "schema": {
+                  "type": "string",
+                  "example": "Express"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json; charset=utf-8"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer",
+                  "example": "103"
+                }
+              },
+              "ETag": {
+                "schema": {
+                  "type": "string",
+                  "example": "W/\"67-mNfczonkl3YxzkVkvIoqjHl+EpA\""
+                }
+              },
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Mon, 30 Oct 2023 06:06:56 GMT"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "keep-alive"
+                }
+              },
+              "Keep-Alive": {
+                "schema": {
+                  "type": "string",
+                  "example": "timeout=5"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "status": "success",
+                  "message": "Quiz created successfully",
+                  "data": {
+                    "quizId": "653f480005f6d6dbea8a5f7a"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "default"
+        ],
+        "summary": "Quiz Get",
+        "description": "send quizId for particular quiz otherwise you will get all the quizzes",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "X-Powered-By": {
+                "schema": {
+                  "type": "string",
+                  "example": "Express"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json; charset=utf-8"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer",
+                  "example": "461"
+                }
+              },
+              "ETag": {
+                "schema": {
+                  "type": "string",
+                  "example": "W/\"1cd-H9OjplWfB4hA1r6Vsd9xXJRVn7Y\""
+                }
+              },
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Mon, 21 Feb 2022 16:53:21 GMT"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "keep-alive"
+                }
+              },
+              "Keep-Alive": {
+                "schema": {
+                  "type": "string",
+                  "example": "timeout=5"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "examples": {
+                  "example-0": {
+                    "summary": "Quiz Get",
+                    "value": {
+                      "status": "success",
+                      "message": "Quiz",
+                      "data": {
+                        "_id": "6213c011441bac159eca9e11",
+                        "name": "My Quiz 103",
+                        "questions_list": [
+                          {
+                            "question_number": 1,
+                            "question": "What is the capital of India?",
+                            "options": {
+                              "1": "Bangalore",
+                              "2": "Lucknow",
+                              "3": "Rajasthan",
+                              "4": "New Delhi"
+                            },
+                            "_id": "6213c011441bac159eca9e12"
+                          },
+                          {
+                            "question_number": 2,
+                            "question": "What is you name?",
+                            "options": {
+                              "1": "Azhar",
+                              "2": "Arush",
+                              "3": "Ramesh",
+                              "4": "Ajay"
+                            },
+                            "_id": "6213c011441bac159eca9e12"
+                          }
+                        ],
+                        "answers": {
+                          "1": 4,
+                          "2": 1
+                        }
+                      }
+                    }
+                  },
+                  "example-1": {
+                    "summary": "Get all quiz",
+                    "value": {
+                      "status": "success",
+                      "message": "Quiz",
+                      "data": [
+                        {
+                          "_id": "651a858655af3c91a38f01a6",
+                          "name": "GK Quiz 101",
+                          "questionList": [
+                            {
+                              "questionNumber": 1,
+                              "question": "What is the capital of India?",
+                              "options": {
+                                "1": "Bangalore",
+                                "2": "Lucknow",
+                                "3": "Rajasthan",
+                                "4": "New Delhi"
+                              },
+                              "_id": "651a858655af3c91a38f01a7"
+                            },
+                            {
+                              "questionNumber": 2,
+                              "question": "How many players are there in cricket team?",
+                              "options": {
+                                "1": "1",
+                                "2": "2",
+                                "3": "11",
+                                "4": "20"
+                              },
+                              "_id": "651a858655af3c91a38f01a8"
+                            }
+                          ],
+                          "answers": {
+                            "1": 4,
+                            "2": 3
+                          },
+                          "createdBy": "651a83d255af3c91a38f0190",
+                          "isPublished": false,
+                          "createdAt": "2023-10-02T08:55:34.799Z",
+                          "updatedAt": "2023-10-02T08:55:34.799Z",
+                          "__v": 0
+                        },
+                        {
+                          "_id": "651a866f55af3c91a38f01b0",
+                          "name": "GK Quiz 102",
+                          "questionList": [
+                            {
+                              "questionNumber": 1,
+                              "question": "What is the capital of Uttar Pradesh?",
+                              "options": {
+                                "1": "Varanasi",
+                                "2": "Lucknow",
+                                "3": "Dehradun",
+                                "4": "Banglore"
+                              },
+                              "_id": "651a866f55af3c91a38f01b1"
+                            },
+                            {
+                              "questionNumber": 2,
+                              "question": "How many players are there in football team?",
+                              "options": {
+                                "1": "1",
+                                "2": "2",
+                                "3": "11",
+                                "4": "20"
+                              },
+                              "_id": "651a866f55af3c91a38f01b2"
+                            }
+                          ],
+                          "answers": {
+                            "1": 2,
+                            "2": 3
+                          },
+                          "createdBy": "651a83d255af3c91a38f0190",
+                          "isPublished": false,
+                          "createdAt": "2023-10-02T08:59:27.095Z",
+                          "updatedAt": "2023-10-02T08:59:27.095Z",
+                          "__v": 0
+                        }
+                      ]
+                    }
+                  },
+                  "example-2": {
+                    "summary": "Quiz a particular Quiz",
+                    "value": {
+                      "status": "success",
+                      "message": "Quiz",
+                      "data": {
+                        "_id": "651a866f55af3c91a38f01b0",
+                        "name": "GK Quiz 102",
+                        "questionList": [
+                          {
+                            "questionNumber": 1,
+                            "question": "What is the capital of Uttar Pradesh?",
+                            "options": {
+                              "1": "Varanasi",
+                              "2": "Lucknow",
+                              "3": "Dehradun",
+                              "4": "Banglore"
+                            },
+                            "_id": "651a866f55af3c91a38f01b1"
+                          },
+                          {
+                            "questionNumber": 2,
+                            "question": "How many players are there in football team?",
+                            "options": {
+                              "1": "1",
+                              "2": "2",
+                              "3": "11",
+                              "4": "20"
+                            },
+                            "_id": "651a866f55af3c91a38f01b2"
+                          }
+                        ],
+                        "answers": {
+                          "1": 2,
+                          "2": 3
+                        },
+                        "createdBy": "651a83d255af3c91a38f0190"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "default"
+        ],
+        "summary": "Quiz Update",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "_id": "654c927db5abe69699b5a2a8",
+                  "name": "GK Quiz 101",
+                  "category": "exam",
+                  "questionList": [
+                    {
+                      "questionNumber": 1,
+                      "question": "What is the capital of Uttar Pradesh?",
+                      "options": {
+                        "1": "Varanasi",
+                        "2": "Lucknow",
+                        "3": "Dehradun",
+                        "4": "Banglore"
+                      }
+                    },
+                    {
+                      "questionNumber": 2,
+                      "question": "How many players are there in football team?",
+                      "options": {
+                        "1": "1",
+                        "2": "2",
+                        "3": "11",
+                        "4": "20"
+                      }
+                    },
+                    {
+                      "questionNumber": 3,
+                      "question": "Sun temple is located in ____?",
+                      "options": {
+                        "1": "Konark",
+                        "2": "Goa",
+                        "3": "Delhi",
+                        "4": "Gujrat"
+                      }
+                    },
+                    {
+                      "questionNumber": 4,
+                      "question": "Which animal is know as ship of the desert?",
+                      "options": {
+                        "1": "Goat",
+                        "2": "Cow",
+                        "3": "Camel",
+                        "4": "Titanic"
+                      }
+                    },
+                    {
+                      "questionNumber": 5,
+                      "question": "How many letter are in the English alphabet?",
+                      "options": {
+                        "1": "27",
+                        "2": "24",
+                        "3": "25",
+                        "4": "26"
+                      }
+                    }
+                  ],
+                  "answers": {
+                    "1": 2,
+                    "2": 3,
+                    "3": 1,
+                    "4": 3,
+                    "5": 4
+                  },
+                  "passingPercentage": 60,
+                  "isPublicQuiz": false,
+                  "allowedUser": [
+                    "6540b13d70180141b40483ad"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "X-Powered-By": {
+                "schema": {
+                  "type": "string",
+                  "example": "Express"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json; charset=utf-8"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer",
+                  "example": "68"
+                }
+              },
+              "ETag": {
+                "schema": {
+                  "type": "string",
+                  "example": "W/\"44-wFAs0VfQCCka8vjgHBb/o4wDlTQ\""
+                }
+              },
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Mon, 02 Oct 2023 09:04:07 GMT"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "keep-alive"
+                }
+              },
+              "Keep-Alive": {
+                "schema": {
+                  "type": "string",
+                  "example": "timeout=5"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "status": "success",
+                  "message": "Quiz updated successfully",
+                  "data": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/quiz/allpublishedquiz": {
+      "get": {
+        "tags": [
+          "default"
+        ],
+        "summary": "All Published Quizzes ",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "X-Powered-By": {
+                "schema": {
+                  "type": "string",
+                  "example": "Express"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json; charset=utf-8"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer",
+                  "example": "1012"
+                }
+              },
+              "ETag": {
+                "schema": {
+                  "type": "string",
+                  "example": "W/\"3f4-ccwAjWz3/jLBlMT2ipR+dmIA02s\""
+                }
+              },
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Wed, 01 Nov 2023 14:13:39 GMT"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "keep-alive"
+                }
+              },
+              "Keep-Alive": {
+                "schema": {
+                  "type": "string",
+                  "example": "timeout=5"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "status": "success",
+                  "message": "All Published Quiz",
+                  "data": [
+                    {
+                      "_id": "654251e1b9fa7331a63e3a40",
+                      "name": "GK Quiz 103",
+                      "category": "exam",
+                      "questionList": [
+                        {
+                          "questionNumber": 1,
+                          "question": "What is the capital of Uttar Pradesh?",
+                          "options": {
+                            "1": "Varanasi",
+                            "2": "Lucknow",
+                            "3": "Dehradun",
+                            "4": "Banglore"
+                          },
+                          "_id": "654251e1b9fa7331a63e3a41"
+                        },
+                        {
+                          "questionNumber": 2,
+                          "question": "How many players are there in football team?",
+                          "options": {
+                            "1": "1",
+                            "2": "2",
+                            "3": "11",
+                            "4": "20"
+                          },
+                          "_id": "654251e1b9fa7331a63e3a42"
+                        },
+                        {
+                          "questionNumber": 3,
+                          "question": "Sun temple is located in ____?",
+                          "options": {
+                            "1": "Konark",
+                            "2": "Goa",
+                            "3": "Delhi",
+                            "4": "Gujrat"
+                          },
+                          "_id": "654251e1b9fa7331a63e3a43"
+                        },
+                        {
+                          "questionNumber": 4,
+                          "question": "Which animal is know as ship of the desert?",
+                          "options": {
+                            "1": "Goat",
+                            "2": "Cow",
+                            "3": "Camel",
+                            "4": "Titanic"
+                          },
+                          "_id": "654251e1b9fa7331a63e3a44"
+                        },
+                        {
+                          "questionNumber": 5,
+                          "question": "How many letter are in the English alphabet?",
+                          "options": {
+                            "1": "27",
+                            "2": "24",
+                            "3": "25",
+                            "4": "26"
+                          },
+                          "_id": "654251e1b9fa7331a63e3a45"
+                        }
+                      ],
+                      "createdBy": "6540bc3a09b0d8d5494e9989"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/quiz/653bd175e31adc60bd18cb43": {
+      "delete": {
+        "tags": [
+          "default"
+        ],
+        "summary": "Quiz Delete",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "X-Powered-By": {
+                "schema": {
+                  "type": "string",
+                  "example": "Express"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json; charset=utf-8"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer",
+                  "example": "68"
+                }
+              },
+              "ETag": {
+                "schema": {
+                  "type": "string",
+                  "example": "W/\"44-L81TY1kTMMSZ9fAkxcpNsV5/x6M\""
+                }
+              },
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Mon, 02 Oct 2023 09:05:14 GMT"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "keep-alive"
+                }
+              },
+              "Keep-Alive": {
+                "schema": {
+                  "type": "string",
+                  "example": "timeout=5"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "status": "success",
+                  "message": "Quiz deleted successfully",
+                  "data": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/quiz/publish": {
+      "patch": {
+        "tags": [
+          "default"
+        ],
+        "summary": "Quiz publish",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "quizId": "654c927db5abe69699b5a2a8"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "X-Powered-By": {
+                "schema": {
+                  "type": "string",
+                  "example": "Express"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json; charset=utf-8"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer",
+                  "example": "58"
+                }
+              },
+              "ETag": {
+                "schema": {
+                  "type": "string",
+                  "example": "W/\"3a-4YhWawOl3qaik2W5V4kXA1wnO4E\""
+                }
+              },
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Mon, 02 Oct 2023 09:06:30 GMT"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "keep-alive"
+                }
+              },
+              "Keep-Alive": {
+                "schema": {
+                  "type": "string",
+                  "example": "timeout=5"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "status": "success",
+                  "message": "Quiz published!",
+                  "data": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/exam/651a858655af3c91a38f01a6": {
+      "get": {
+        "tags": [
+          "default"
+        ],
+        "summary": "Exam start",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "X-Powered-By": {
+                "schema": {
+                  "type": "string",
+                  "example": "Express"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json; charset=utf-8"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer",
+                  "example": "464"
+                }
+              },
+              "ETag": {
+                "schema": {
+                  "type": "string",
+                  "example": "W/\"1d0-lVAnvphobr/48QMuOmCBmbTEwWE\""
+                }
+              },
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Mon, 02 Oct 2023 09:07:21 GMT"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "keep-alive"
+                }
+              },
+              "Keep-Alive": {
+                "schema": {
+                  "type": "string",
+                  "example": "timeout=5"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "status": "success",
+                  "message": "Quiz",
+                  "data": {
+                    "_id": "651a858655af3c91a38f01a6",
+                    "name": "GK Quiz 101",
+                    "questionList": [
+                      {
+                        "questionNumber": 1,
+                        "question": "What is the capital of India?",
+                        "options": {
+                          "1": "Bangalore",
+                          "2": "Lucknow",
+                          "3": "Rajasthan",
+                          "4": "New Delhi"
+                        },
+                        "_id": "651a858655af3c91a38f01a7"
+                      },
+                      {
+                        "questionNumber": 2,
+                        "question": "How many players are there in cricket team?",
+                        "options": {
+                          "1": "1",
+                          "2": "2",
+                          "3": "11",
+                          "4": "20"
+                        },
+                        "_id": "651a858655af3c91a38f01a8"
+                      }
+                    ],
+                    "isPublished": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/exam": {
+      "post": {
+        "tags": [
+          "default"
+        ],
+        "summary": "Exam submit",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "quizId": "65434b10d2bd136ff622335b",
+                  "attemptedQuestion": {
+                    "1": 2,
+                    "2": 3,
+                    "3": 1,
+                    "4": 3,
+                    "5": 4
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "X-Powered-By": {
+                "schema": {
+                  "type": "string",
+                  "example": "Express"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json; charset=utf-8"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer",
+                  "example": "130"
+                }
+              },
+              "ETag": {
+                "schema": {
+                  "type": "string",
+                  "example": "W/\"82-hwJfk0eSnvd8F/ManiWFA4UceLw\""
+                }
+              },
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Mon, 30 Oct 2023 06:14:13 GMT"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "keep-alive"
+                }
+              },
+              "Keep-Alive": {
+                "schema": {
+                  "type": "string",
+                  "example": "timeout=5"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "examples": {
+                  "example-0": {
+                    "summary": "Exam submit",
+                    "value": {
+                      "status": "success",
+                      "message": "Quiz submitted",
+                      "data": {
+                        "total": 5,
+                        "score": 0,
+                        "result": "Fail",
+                        "reportId": "653f49b505f6d6dbea8a5fd5"
+                      }
+                    }
+                  },
+                  "example-1": {
+                    "summary": "Exam submit",
+                    "value": {
+                      "status": "success",
+                      "message": "Quiz submitted",
+                      "data": {
+                        "total": 5,
+                        "score": 5,
+                        "result": "Pass",
+                        "reportId": "65434b68d2bd136ff622337f"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/report/651a88a955af3c91a38f01f2": {
+      "get": {
+        "tags": [
+          "default"
+        ],
+        "summary": "Report get",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "X-Powered-By": {
+                "schema": {
+                  "type": "string",
+                  "example": "Express"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json; charset=utf-8"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer",
+                  "example": "293"
+                }
+              },
+              "ETag": {
+                "schema": {
+                  "type": "string",
+                  "example": "W/\"125-EK/HdReH48/1UT/gj9v5H5hcR48\""
+                }
+              },
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Wed, 01 Nov 2023 08:43:31 GMT"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "keep-alive"
+                }
+              },
+              "Keep-Alive": {
+                "schema": {
+                  "type": "string",
+                  "example": "timeout=5"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "examples": {
+                  "example-0": {
+                    "summary": "Get a particular report of user",
+                    "value": {
+                      "status": "success",
+                      "message": "Report!",
+                      "data": {
+                        "_id": "65420ef4929a1fd62d7525ab",
+                        "userId": "65390312d8ba86cfea694786",
+                        "quizId": "65420d1272ac731dee378c8a",
+                        "score": 5,
+                        "total": 5,
+                        "percentage": 100,
+                        "result": "Pass",
+                        "createdAt": "2023-11-01T08:40:20.842Z",
+                        "updatedAt": "2023-11-01T08:40:20.842Z",
+                        "__v": 0
+                      }
+                    }
+                  },
+                  "example-1": {
+                    "summary": "Get all reports of user",
+                    "value": {
+                      "status": "success",
+                      "message": "Report!",
+                      "data": [
+                        {
+                          "_id": "653903eed8ba86cfea694798",
+                          "userId": "65390312d8ba86cfea694786",
+                          "quizId": "653902b2d8ba86cfea69477a",
+                          "score": 1,
+                          "total": 2,
+                          "createdAt": "2023-10-25T12:02:54.607Z",
+                          "updatedAt": "2023-10-25T12:02:54.607Z",
+                          "__v": 0
+                        },
+                        {
+                          "_id": "6539082a6663f6bfd8f23394",
+                          "userId": "65390312d8ba86cfea694786",
+                          "quizId": "653902b2d8ba86cfea69477a",
+                          "score": 1,
+                          "total": 2,
+                          "percentage": 50,
+                          "createdAt": "2023-10-25T12:20:58.294Z",
+                          "updatedAt": "2023-10-25T12:20:58.294Z",
+                          "__v": 0
+                        },
+                        {
+                          "_id": "653908ae663a8600cb514148",
+                          "userId": "65390312d8ba86cfea694786",
+                          "quizId": "653902b2d8ba86cfea69477a",
+                          "score": 1,
+                          "total": 3,
+                          "percentage": 33.33333333333333,
+                          "createdAt": "2023-10-25T12:23:10.964Z",
+                          "updatedAt": "2023-10-25T12:23:10.964Z",
+                          "__v": 0
+                        },
+                        {
+                          "_id": "65390996ed4e7e9ec35894a6",
+                          "userId": "65390312d8ba86cfea694786",
+                          "quizId": "65390962ed4e7e9ec358948c",
+                          "score": 1,
+                          "total": 3,
+                          "percentage": 33.33333333333333,
+                          "createdAt": "2023-10-25T12:27:02.023Z",
+                          "updatedAt": "2023-10-25T12:27:02.023Z",
+                          "__v": 0
+                        },
+                        {
+                          "_id": "65390a84ad208306ed00d02b",
+                          "userId": "65390312d8ba86cfea694786",
+                          "quizId": "65390962ed4e7e9ec358948c",
+                          "score": 1,
+                          "total": 3,
+                          "percentage": 33.33333333333333,
+                          "createdAt": "2023-10-25T12:31:00.884Z",
+                          "updatedAt": "2023-10-25T12:31:00.884Z",
+                          "__v": 0
+                        },
+                        {
+                          "_id": "65390d4977d346329a241e46",
+                          "userId": "65390312d8ba86cfea694786",
+                          "quizId": "65390962ed4e7e9ec358948c",
+                          "score": 1,
+                          "total": 3,
+                          "percentage": 33.33333333333333,
+                          "createdAt": "2023-10-25T12:42:49.479Z",
+                          "updatedAt": "2023-10-25T12:42:49.479Z",
+                          "__v": 0
+                        },
+                        {
+                          "_id": "653f59d810b78b178316e291",
+                          "userId": "65390312d8ba86cfea694786",
+                          "quizId": "653f59a110b78b178316e26b",
+                          "score": 0,
+                          "total": 5,
+                          "percentage": 0,
+                          "createdAt": "2023-10-30T07:23:04.821Z",
+                          "updatedAt": "2023-10-30T07:23:04.821Z",
+                          "__v": 0
+                        },
+                        {
+                          "_id": "65420da972ac731dee378ca7",
+                          "userId": "65390312d8ba86cfea694786",
+                          "quizId": "65420d1272ac731dee378c8a",
+                          "score": 5,
+                          "total": 5,
+                          "percentage": 100,
+                          "result": "Pass",
+                          "createdAt": "2023-11-01T08:34:49.540Z",
+                          "updatedAt": "2023-11-01T08:34:49.540Z",
+                          "__v": 0
+                        },
+                        {
+                          "_id": "65420ef4929a1fd62d7525ab",
+                          "userId": "65390312d8ba86cfea694786",
+                          "quizId": "65420d1272ac731dee378c8a",
+                          "score": 5,
+                          "total": 5,
+                          "percentage": 100,
+                          "result": "Pass",
+                          "createdAt": "2023-11-01T08:40:20.842Z",
+                          "updatedAt": "2023-11-01T08:40:20.842Z",
+                          "__v": 0
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/favques": {
+      "post": {
+        "tags": [
+          "default"
+        ],
+        "summary": "Add FavQuestion",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "questionName": "hello"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "X-Powered-By": {
+                "schema": {
+                  "type": "string",
+                  "example": "Express"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json; charset=utf-8"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer",
+                  "example": "72"
+                }
+              },
+              "ETag": {
+                "schema": {
+                  "type": "string",
+                  "example": "W/\"48-rHl85lyzCsVyIClsP9+8mB/vUs8\""
+                }
+              },
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Tue, 07 Nov 2023 15:49:46 GMT"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "keep-alive"
+                }
+              },
+              "Keep-Alive": {
+                "schema": {
+                  "type": "string",
+                  "example": "timeout=5"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "status": "success",
+                  "message": "Question added to Favourites!",
+                  "data": {}
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "default"
+        ],
+        "summary": "Show FavQuestion",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "X-Powered-By": {
+                "schema": {
+                  "type": "string",
+                  "example": "Express"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json; charset=utf-8"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer",
+                  "example": "450"
+                }
+              },
+              "ETag": {
+                "schema": {
+                  "type": "string",
+                  "example": "W/\"1c2-0wIZaRgdR427hURRns8i8haUpXw\""
+                }
+              },
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Tue, 07 Nov 2023 15:50:11 GMT"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "keep-alive"
+                }
+              },
+              "Keep-Alive": {
+                "schema": {
+                  "type": "string",
+                  "example": "timeout=5"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "status": "success",
+                  "message": "Favourite Questions!",
+                  "data": {
+                    "fav": [
+                      {
+                        "_id": "6549f6114f7f60a0f057cfbc",
+                        "userId": "6549f4b73d6bb1ca1eb18791",
+                        "question": "How many letter are in the English alphabet?",
+                        "options": {
+                          "1": "27",
+                          "2": "24",
+                          "3": "25",
+                          "4": "26"
+                        },
+                        "__v": 0
+                      },
+                      {
+                        "_id": "654a5c8944db071e69bb7b68",
+                        "userId": "6549f4b73d6bb1ca1eb18791",
+                        "question": "Which animal is know as ship of the desert?",
+                        "options": {
+                          "1": "Goat",
+                          "2": "Cow",
+                          "3": "Camel",
+                          "4": "Titanic"
+                        },
+                        "__v": 0
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/removefavques/654a6c12eb8b8b0f41f7308e": {
+      "delete": {
+        "tags": [
+          "default"
+        ],
+        "summary": "Remove FavQuestion",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "X-Powered-By": {
+                "schema": {
+                  "type": "string",
+                  "example": "Express"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json; charset=utf-8"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer",
+                  "example": "88"
+                }
+              },
+              "ETag": {
+                "schema": {
+                  "type": "string",
+                  "example": "W/\"58-WgK1jEEDZbCiQKfGo6g2A62x9SE\""
+                }
+              },
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Tue, 07 Nov 2023 16:58:04 GMT"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "keep-alive"
+                }
+              },
+              "Keep-Alive": {
+                "schema": {
+                  "type": "string",
+                  "example": "timeout=5"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "status": "success",
+                  "message": "Question removed from favourites successfully",
+                  "data": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/deactivate": {
+      "patch": {
+        "tags": [
+          "default"
+        ],
+        "summary": "Deactivate User",
+        "requestBody": {
+          "content": {}
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "X-Powered-By": {
+                "schema": {
+                  "type": "string",
+                  "example": "Express"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json; charset=utf-8"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer",
+                  "example": "60"
+                }
+              },
+              "ETag": {
+                "schema": {
+                  "type": "string",
+                  "example": "W/\"3c-xIIx2BZgad1ntQ1qb427U8ScU7E\""
+                }
+              },
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Mon, 02 Oct 2023 09:22:26 GMT"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "keep-alive"
+                }
+              },
+              "Keep-Alive": {
+                "schema": {
+                  "type": "string",
+                  "example": "timeout=5"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "status": "success",
+                  "message": "An Email has been sent to your account please verify!",
+                  "data": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/activate": {
+      "post": {
+        "tags": [
+          "default"
+        ],
+        "summary": "Activate User",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "email": "myselfmrv@gmail.com"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "X-Powered-By": {
+                "schema": {
+                  "type": "string",
+                  "example": "Express"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json; charset=utf-8"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer",
+                  "example": "96"
+                }
+              },
+              "ETag": {
+                "schema": {
+                  "type": "string",
+                  "example": "W/\"60-BzKwkhDKMBolb8VIxai7B3KbRPU\""
+                }
+              },
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Mon, 02 Oct 2023 09:44:09 GMT"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "keep-alive"
+                }
+              },
+              "Keep-Alive": {
+                "schema": {
+                  "type": "string",
+                  "example": "timeout=5"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "status": "success",
+                  "message": "An Email has been sent to your account please verify!",
+                  "data": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/changepassword": {
+      "put": {
+        "tags": [
+          "default"
+        ],
+        "summary": "Change Password",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "currentPassword": "Password@12345",
+                  "newPassword": "Password@111",
+                  "confirmPassword": "Password@111"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "X-Powered-By": {
+                "schema": {
+                  "type": "string",
+                  "example": "Express"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json; charset=utf-8"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer",
+                  "example": "59"
+                }
+              },
+              "ETag": {
+                "schema": {
+                  "type": "string",
+                  "example": "W/\"3b-ZarSKJhOqf5Y8567Wuu4ZFZTW/w\""
+                }
+              },
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Wed, 01 Nov 2023 15:38:46 GMT"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "keep-alive"
+                }
+              },
+              "Keep-Alive": {
+                "schema": {
+                  "type": "string",
+                  "example": "timeout=5"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "status": "success",
+                  "message": "Password updated",
+                  "data": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/deactivate/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTNmZmYxY2U2ZGU4ODAzYjQyMmFmOTEiLCJpYXQiOjE2OTg2OTMwMTksImV4cCI6MTY5ODY5MzMxOX0.eZe7n05B_SvZAnGaZ1BQ6yDykQFr16qSwfQUVp8zAj8": {
+      "get": {
+        "tags": [
+          "default"
+        ],
+        "summary": "verify-email-link",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/user/logout": {
+      "post": {
+        "tags": [
+          "default"
+        ],
+        "summary": "Log Out",
+        "requestBody": {
+          "content": {}
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "X-Powered-By": {
+                "schema": {
+                  "type": "string",
+                  "example": "Express"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json; charset=utf-8"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer",
+                  "example": "66"
+                }
+              },
+              "ETag": {
+                "schema": {
+                  "type": "string",
+                  "example": "W/\"42-vAXt4WrgRyqwanFETU4pLtDlaPU\""
+                }
+              },
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Tue, 07 Nov 2023 15:58:22 GMT"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "keep-alive"
+                }
+              },
+              "Keep-Alive": {
+                "schema": {
+                  "type": "string",
+                  "example": "timeout=5"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "status": "success",
+                  "message": "Logged out succesfully!",
+                  "data": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/forgotpassword": {
+      "post": {
+        "tags": [
+          "default"
+        ],
+        "summary": "Forgot Password",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "email": "theloneranger973@gmail.com"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "undefined": {
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": ""
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/verify-registration-otp/{registrationToken}": {
+      "post": {
+        "tags": [
+          "default"
+        ],
+        "summary": "verify-registration-otp",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "otp": 234236
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "registrationToken",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "undefined": {
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "{\r\n    \"status\": \"success\",\r\n    \"message\": \"Registration Done !!\",\r\n    \"data\": {\r\n        \"userId\": \"654e67da0b09322db15994ca\",\r\n        \"email\": \"aarush@gmail.com\"\r\n    }\r\n}"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/resend-registration-otp/{registrationToken}": {
+      "get": {
+        "tags": [
+          "default"
+        ],
+        "summary": "resend-registration-otp",
+        "parameters": [
+          {
+            "name": "registrationToken",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "undefined": {
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "{\r\n    \"status\": \"success\",\r\n    \"message\": \"OTP send successfully. Please Verify Account\",\r\n    \"data\": {}\r\n}"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/deactivate/verify-deactivate-account-otp": {
+      "post": {
+        "tags": [
+          "default"
+        ],
+        "summary": "verify-deactivate-otp",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "otp": 234768
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "undefined": {
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": "{\r\n    \"status\": \"success\",\r\n    \"message\": \"Deactivate Account Successfull !!\",\r\n    \"data\": {\r\n        \"userId\": \"654e67da0b09322db15994ca\",\r\n        \"email\": \"aarush@gmail.com\"\r\n    }\r\n}"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
