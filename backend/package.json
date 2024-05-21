@@ -24,7 +24,7 @@
     "nodemailer": "^6.9.7",
     "otp-generator": "^4.0.1",
     "swagger-autogen": "^2.23.7",
-    "swagger-ui-express": "4.6.2",
+    "swagger-ui-express": "^4.6.2",
     "typescript": "^5.2.2"
   },
   "scripts": {
