@@ -19,7 +19,7 @@ const AllPublishQuizSection = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchAllQuizdata = async () => {
+    const fetchAllQuizData = async () => {
       try {
         const res = await axios.get(
           "https://quizzle-app-backend.vercel.app/quiz/allpublishedquiz",
@@ -34,7 +34,7 @@ const AllPublishQuizSection = () => {
         console.log(error);
       }
     };
-    fetchAllQuizdata();
+    fetchAllQuizData();
   }, [token]);
   return (
     <div className="all-quiz-container">
@@ -48,74 +48,75 @@ const AllPublishQuizSection = () => {
         </p>
       </div>
 
-      {/* <Carousel
-        additionalTransfrom={0}
-        arrows={false}
-        autoPlay
-        autoPlaySpeed={5000}
-        centerMode={true}
-        className=""
-        containerClass="container-with-dots"
-        dotListClass=""
-        draggable
-        focusOnSelect={false}
-        infinite
-        itemClass="item-class"
-        keyBoardControl
-        minimumTouchDrag={80}
-        pauseOnHover
-        renderArrowsWhenDisabled={false}
-        renderButtonGroupOutside={false}
-        renderDotsOutside={false}
-        responsive={{
-          desktop: {
-            breakpoint: {
-              max: 3000,
-              min: 1024,
+      {allPublishedQuiz?.length && (
+        <Carousel
+          additionalTransfrom={0}
+          arrows={false}
+          autoPlay
+          autoPlaySpeed={5000}
+          centerMode={true}
+          className=""
+          containerClass="container-with-dots"
+          dotListClass=""
+          draggable
+          focusOnSelect={false}
+          infinite
+          itemClass="item-class"
+          keyBoardControl
+          minimumTouchDrag={80}
+          pauseOnHover
+          renderArrowsWhenDisabled={false}
+          renderButtonGroupOutside={false}
+          renderDotsOutside={false}
+          responsive={{
+            desktop: {
+              breakpoint: {
+                max: 3000,
+                min: 1024,
+              },
+              items: 5,
+              partialVisibilityGutter: 40,
             },
-            items: 5,
-            partialVisibilityGutter: 40,
-          },
-          mobile: {
-            breakpoint: {
-              max: 464,
-              min: 0,
+            mobile: {
+              breakpoint: {
+                max: 464,
+                min: 0,
+              },
+              items: 1,
+              partialVisibilityGutter: 30,
             },
-            items: 1,
-            partialVisibilityGutter: 30,
-          },
-          tablet: {
-            breakpoint: {
-              max: 1024,
-              min: 464,
+            tablet: {
+              breakpoint: {
+                max: 1024,
+                min: 464,
+              },
+              items: 3,
+              partialVisibilityGutter: 30,
             },
-            items: 3,
-            partialVisibilityGutter: 30,
-          },
-        }}
-        rewind={false}
-        rewindWithAnimation={true}
-        rtl={false}
-        shouldResetAutoplay
-        showDots={false}
-        sliderClass=""
-        slidesToSlide={1}
-        swipeable
-      >
-        {allPublishedQuiz?.map((publishQuiz) => {
-          return (
-            <div className="card" key={publishQuiz._id}>
-              <h1 className=" text-lg sm:text-xl text-[#701A75]">
-                {publishQuiz.name}
-              </h1>
-              <h1 className="text-[#0F172A] capitalize">
-                {publishQuiz.category}
-              </h1>
-            </div>
-          );
-        })}
-      </Carousel> */}
-
+          }}
+          rewind={false}
+          rewindWithAnimation={true}
+          rtl={false}
+          shouldResetAutoplay
+          showDots={false}
+          sliderClass=""
+          slidesToSlide={1}
+          swipeable
+        >
+          {allPublishedQuiz?.map((publishQuiz) => {
+            return (
+              <div className="card" key={publishQuiz._id}>
+                <h1 className=" text-lg sm:text-xl text-[#701A75]">
+                  {publishQuiz.name}
+                </h1>
+                <h1 className="text-[#0F172A] capitalize">
+                  {publishQuiz.category}
+                </h1>
+              </div>
+            );
+          })}
+        </Carousel>
+      )}
       <h1 className="text-center p-3 mt-2">
         <span
           className="show-more-btn"

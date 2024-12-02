@@ -11,12 +11,12 @@ import { RootState } from "../../../store/store";
 import CreateQuizModal from "../../../components/modal/CreateQuizModal";
 import { ConnectionResponse } from "../../../utils/interfaces";
 
-interface AlluserType {
+interface AllUserType {
   _id: string;
   name: string;
 }
 
-const CreateQuiz:React.FC<ConnectionResponse> = ({setIsConnectionError}) => {
+const CreateQuiz: React.FC<ConnectionResponse> = ({ setIsConnectionError }) => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const radioRef = useRef<HTMLInputElement>(null);
@@ -26,7 +26,7 @@ const CreateQuiz:React.FC<ConnectionResponse> = ({setIsConnectionError}) => {
   const [category, setCategory] = useState("exam");
   const [passingPercentage, setPassingPercentage] = useState("");
   const [isPublicQuiz, setIsPublicQuiz] = useState(true);
-  const [allUsers, setAllUsers] = useState<AlluserType[]>();
+  const [allUsers, setAllUsers] = useState<AllUserType[]>();
   const [allowedUser, setAllowedUsers] = useState<string[]>([]);
 
   const [questionDetails, setQuestionDetails] = useState([
@@ -46,14 +46,17 @@ const CreateQuiz:React.FC<ConnectionResponse> = ({setIsConnectionError}) => {
   useEffect(() => {
     const fetchAllUsers = async () => {
       try {
-        const res = await axios.get("https://quizzle-app-backend.vercel.app/user/all-users", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const res = await axios.get(
+          "https://quizzle-app-backend.vercel.app/user/all-users",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
         setAllUsers(res.data.data);
       } catch (error) {
-        setIsConnectionError(true)
+        setIsConnectionError(true);
       }
     };
 
@@ -127,14 +130,17 @@ const CreateQuiz:React.FC<ConnectionResponse> = ({setIsConnectionError}) => {
       allowedUser,
     };
 
-    console.log(quizData)
     try {
       setIsLoading(true);
-      const res = await axios.post("https://quizzle-app-backend.vercel.app/quiz", quizData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const res = await axios.post(
+        "https://quizzle-app-backend.vercel.app/quiz",
+        quizData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       console.log(res);
       setIsLoading(false);
       if (res.data.status === "success") {
@@ -156,10 +162,9 @@ const CreateQuiz:React.FC<ConnectionResponse> = ({setIsConnectionError}) => {
       setIsLoading(false);
       const { data } = error.response.data;
       if (error.response.data.status === "error") {
-        if(error.response.status>=500){
-          setIsConnectionError(true)
-        }
-        else{
+        if (error.response.status >= 500) {
+          setIsConnectionError(true);
+        } else {
           toast.error(data[0].msg, {
             position: "top-center",
             autoClose: 4000,
@@ -176,9 +181,7 @@ const CreateQuiz:React.FC<ConnectionResponse> = ({setIsConnectionError}) => {
   };
 
   const deleteQuestionPack = (index: number) => {
-    console.log("first", index);
     setQuestionDetails(questionDetails.filter((arr, id) => index !== id));
-    console.log(answers)
   };
 
   return (
@@ -186,7 +189,7 @@ const CreateQuiz:React.FC<ConnectionResponse> = ({setIsConnectionError}) => {
       <div className="create-quiz-details w-[90%] min-[650px]:w-[75%] min-[800px]:w-[60%]">
         {quizDetails ? (
           <h1 className="w-full h-[46px] p-2.5 text-3xl rounded-md text-[#064E3B]">
-            {name}
+            {name === "" ? "No Name" : name}
           </h1>
         ) : (
           <input
@@ -200,7 +203,11 @@ const CreateQuiz:React.FC<ConnectionResponse> = ({setIsConnectionError}) => {
           />
         )}
 
-        <div className="flex justify-between w-full mt-3">
+        <div
+          className={`flex flex-col sm:flex-row sm:justify-between w-full mt-6 ${
+            !quizDetails && "gap-6"
+          }`}
+        >
           <div
             className={`${
               quizDetails
@@ -246,22 +253,16 @@ const CreateQuiz:React.FC<ConnectionResponse> = ({setIsConnectionError}) => {
           </div>
         </div>
 
-        <div
-          className={`flex items-center mt-3 w-full ${
-            quizDetails ? "flex-col py-3" : "justify-around gap-8 h-[80px]"
-          } `}
-        >
+        {!quizDetails ? (
           <div
-            className={`flex items-center gap-1 ${
-              quizDetails ? "px-4 py-2  rounded-md" : ""
-            }`}
+            className={`flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-8 h-[80px] mt-8 w-full`}
           >
-            {quizDetails || <label>Public</label>}
-            {quizDetails ? (
-              <h1 className="text-[#064E3B]">
-                {isPublicQuiz ? "Public Quiz" : "Private Quiz"}
-              </h1>
-            ) : (
+            <div
+              className={`flex items-center gap-1 ${
+                quizDetails ? "px-4 py-2  rounded-md" : ""
+              }`}
+            >
+              <label>Public</label>
               <input
                 type="checkbox"
                 defaultChecked
@@ -269,13 +270,48 @@ const CreateQuiz:React.FC<ConnectionResponse> = ({setIsConnectionError}) => {
                 onChange={checkBoxHandler}
                 className="cursor-pointer"
               />
+            </div>
+            {isPublicQuiz || (
+              <div className="select-container">
+                <div
+                  className="select-btn"
+                  onClick={() => setShowSelectItems(!showSelectItems)}
+                >
+                  <span>Select Users</span>
+                  <span>
+                    {showSelectItems ? <IoIosArrowUp /> : <IoIosArrowDown />}
+                  </span>
+                </div>
+                {showSelectItems && (
+                  <ul className="select-items">
+                    {allUsers?.map((user) => {
+                      return (
+                        <li key={user._id}>
+                          <input
+                            type="checkbox"
+                            value={user._id}
+                            onChange={(e) =>
+                              setAllowedUsers([...allowedUser, e.target.value])
+                            }
+                          />
+                          <label htmlFor="">{user.name}</label>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                )}
+              </div>
             )}
           </div>
-          {isPublicQuiz || (
-            <>
-              {quizDetails ? (
-                <div className="allowed-user-container py-2 mt-1 w-full">
-                  <h1 className="text-center">Allowed Users</h1>
+        ) : (
+          <div className={`flex flex-col w-full px-4 py-2`}>
+            <h1 className="text-[#064E3B]">
+              {isPublicQuiz ? "Public Quiz" : "Private Quiz"}
+            </h1>
+            {!isPublicQuiz && (
+              <div className="allowed-user-container py-2 mt-1 w-full">
+                <h1>Allowed Users</h1>
+                {filterUsers.length ? (
                   <Carousel
                     additionalTransfrom={0}
                     arrows={false}
@@ -340,46 +376,15 @@ const CreateQuiz:React.FC<ConnectionResponse> = ({setIsConnectionError}) => {
                       );
                     })}
                   </Carousel>
-                </div>
-              ) : (
-                <div className="select-container">
-                  <div
-                    className="select-btn"
-                    onClick={() => setShowSelectItems(!showSelectItems)}
-                  >
-                    <span>Select Users</span>
-                    <span>
-                      {showSelectItems ? <IoIosArrowUp /> : <IoIosArrowDown />}
-                    </span>
-                  </div>
-                  {showSelectItems && (
-                    <ul className="select-items">
-                      {allUsers?.map((user) => {
-                        return (
-                          <li key={user._id}>
-                            <input
-                              type="checkbox"
-                              value={user._id}
-                              onChange={(e) =>
-                                setAllowedUsers([
-                                  ...allowedUser,
-                                  e.target.value,
-                                ])
-                              }
-                            />
-                            <label htmlFor="">{user.name}</label>
-                          </li>
-                        );
-                      })}
-                    </ul>
-                  )}
-                </div>
-              )}
-            </>
-          )}
-        </div>
+                ) : (
+                  <h1 className="text-gray-500">No user</h1>
+                )}
+              </div>
+            )}
+          </div>
+        )}
 
-        <h1 className="w-full text-right">
+        <h1 className="w-full text-right mt-12 sm:mt-1">
           <span
             className="done-btn"
             onClick={() => {
@@ -497,7 +502,10 @@ const CreateQuiz:React.FC<ConnectionResponse> = ({setIsConnectionError}) => {
                 </div>
               </div>
 
-              <button onClick={() => deleteQuestionPack(index)} className="mt-4 w-full text-right">
+              <button
+                onClick={() => deleteQuestionPack(index)}
+                className="mt-4 w-full text-right"
+              >
                 <RiDeleteBin6Line />
               </button>
             </div>
